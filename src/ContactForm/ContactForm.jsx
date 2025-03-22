@@ -1,56 +1,50 @@
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import css from "./ContactForm.module.css";
 
 const UserSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(3, "Must be min 3 chars")
+  name: Yup.string()
+    .min(3, "Must be minimum 3 chars")
     .max(50, "Your name is too long")
     .required("This field is required"),
   number: Yup.string().required("This field is required"),
 });
 
-export default function UserForm({ onAdd }) {
-  const handleSubmit = (values, actions) => {
-    // console.log('handleSubmit', values);
-    onAdd(values);
-    actions.resetForm();
+export default function UserForm({ onAddContact }) {
+  return (
+    <Formik
+      initialValues={{
+        name: "",
+        number: "",
+        id: "",
+      }}
+      validationSchema={UserSchema}
+      onSubmit={(values, { resetForm }) => {
+        onAddContact({ id: nanoid(), ...values });
+        resetForm();
+      }}
+    >
+      <Form className={css.form}>
+        <div className={css.group}>
+          <label className={css.label} htmlFor="name">
+            Name
+          </label>
+          <Field className={css.input} type="text" name="name" />
+          <ErrorMessage className={css.error} name="name" component="span" />
+        </div>
 
-    return (
-      <Formik
-        initialValues={{
-          name: "",
-          number: "",
-          id: "",
-        }}
-        validationSchema={UserSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form className={css.form}>
-          <div className={css.group}>
-            <label className={css.label}>Name</label>
-            <Field className={css.input} type="text" name="username" />
-            <ErrorMessage
-              className={css.error}
-              name="username"
-              component="span"
-            />
-          </div>
-
-          <div className={css.group}>
-            <label className={css.label}>Number</label>
-            <Field className={css.input} type="email" name="number" />
-            <ErrorMessage
-              className={css.error}
-              name="number"
-              component="span"
-            />
-          </div>
-          <button className={css.button} type="submit">
-            Add contact
-          </button>
-        </Form>
-      </Formik>
-    );
-  };
+        <div className={css.group}>
+          <label className={css.label} htmlFor="number">
+            Number
+          </label>
+          <Field className={css.input} type="text" name="number" />
+          <ErrorMessage className={css.error} name="number" component="span" />
+        </div>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
+      </Form>
+    </Formik>
+  );
 }
