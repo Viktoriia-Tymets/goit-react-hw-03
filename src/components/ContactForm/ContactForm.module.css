@@ -1,0 +1,39 @@
+.form {
+  border-radius: 8px;
+  padding: 16px;
+  border: 3px solid #000000;
+  width: 360px;
+  height: 180px;
+  justify-content: center;
+  background-color: aliceblue;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  color: #000000;
+}
+
+.input {
+  border: 2px solid #808080;
+  border-radius: 4px;
+  width: 350px;
+  height: 25px;
+  background-color: aliceblue;
+}
+
+.button {
+  border-radius: 8px;
+  border: 1px solid #000000;
+  padding: 8px 16px;
+  width: 130px;
+  height: 40px;
+  background: #686e83;
+  margin-top: 24px;
+  margin-left: 100px;
+}

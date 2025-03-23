@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import ContactForm from "./ContactForm/ContactForm";
-import SearchBox from "./SearchBox/SearchBox";
-import ContactList from "./ContactList/ContactList";
+import ContactForm from "../ContactForm/ContactForm";
+import SearchBox from "../SearchBox/SearchBox";
+import ContactList from "../ContactList/ContactList";
+import css from "./App.module.css";
 
-const contact = [
+[
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
@@ -14,8 +15,8 @@ const LOCAL_STORAGE_KEY = "contacts";
 
 export default function App() {
   const [contacts, setContacts] = useState(() => {
-    const savedContacts = contact;
-    return savedContacts;
+    const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return savedContacts ? JSON.parse(savedContacts) : defaultContacts;
   });
 
   const [search, setSearch] = useState("");
@@ -37,9 +38,9 @@ export default function App() {
   });
 
   return (
-    <div>
+    <div className={css.container}>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={addContact} />
+      <ContactForm onSubmit={addContact} />
       <SearchBox value={search} onChange={setSearch} />
       <ContactList contacts={filteredContacts} onDelete={deleteContact} />
     </div>
