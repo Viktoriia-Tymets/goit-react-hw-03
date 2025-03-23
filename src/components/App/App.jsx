@@ -4,7 +4,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 import css from "./App.module.css";
 
-[
+const contacts = [
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
@@ -16,7 +16,7 @@ const LOCAL_STORAGE_KEY = "contacts";
 export default function App() {
   const [contacts, setContacts] = useState(() => {
     const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return savedContacts ? JSON.parse(savedContacts) : defaultContacts;
+    return savedContacts ? JSON.parse(savedContacts) : contacts;
   });
 
   const [search, setSearch] = useState("");
