@@ -25,6 +25,7 @@
   width: 350px;
   height: 25px;
   background-color: aliceblue;
+  color: #000000;
 }
 
 .button {
@@ -37,4 +38,8 @@
   margin-top: 24px;
   margin-left: 100px;
   position: fixed;
+}
+
+.required {
+  color: red;
 }
