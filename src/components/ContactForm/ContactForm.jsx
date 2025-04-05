@@ -11,7 +11,7 @@ const UserSchema = Yup.object().shape({
   number: Yup.string().required("This field is required"),
 });
 
-export default function UserForm({ onAddContact }) {
+export default function UserForm({ onSubmit }) {
   return (
     <Formik
       initialValues={{
@@ -21,7 +21,7 @@ export default function UserForm({ onAddContact }) {
       }}
       validationSchema={UserSchema}
       onSubmit={(values, { resetForm }) => {
-        onAddContact({ id: nanoid(), ...values });
+        onSubmit({ id: nanoid(), ...values });
         resetForm();
       }}
     >
