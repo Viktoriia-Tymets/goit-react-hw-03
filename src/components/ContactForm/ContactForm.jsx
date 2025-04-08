@@ -17,7 +17,6 @@ export default function UserForm({ onSubmit }) {
       initialValues={{
         name: "",
         number: "",
-        id: "",
       }}
       validationSchema={UserSchema}
       onSubmit={(values, { resetForm }) => {
